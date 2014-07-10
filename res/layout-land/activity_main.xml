@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/RDButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/DiceDisplay"
+        android:layout_marginRight="82dp"
+        android:layout_marginTop="26dp"
+        android:minHeight="75dp"
+        android:minWidth="100dp"
+        android:text="@string/roll_dice_button"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:width="200dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/RDButton"
+        android:layout_below="@+id/RDButton"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/Radio_D1"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Radio_D2"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            style="20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Radio_D3"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/DiceDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="60dp"
+        android:layout_toLeftOf="@+id/RDButton"
+        android:text="@string/starting_dice"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="200sp" />
+
+</RelativeLayout>
