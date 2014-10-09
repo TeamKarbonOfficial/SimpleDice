@@ -1,12 +1,13 @@
 package com.teamkarbon.android.simpledice;
 
-import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,8 +17,10 @@ import android.widget.Spinner;
 public class SettingActivity extends Activity {
 
 	//NOTE: Keys used: booleans: 'checkBoxSound', 'checkBoxAnimation'
-	//in shared pref.  int (0 to 100) 'SeekBarDuration'
+	//in shared pref.  int (0 to 10) 'SeekBarDuration'
 	//                 int (0, 1, 2) 'SpinnerVibrationLength'
+	//IMPORTANT: MUST USE com.teamkarbon.android.simpledice PREFIX BEFORE KEY NAME TO PREVENT CONFLICT
+	// (check Save Preference function
 
 	//Declare
 	Button ButtonSave;
@@ -27,6 +30,8 @@ public class SettingActivity extends Activity {
 	Spinner SpinnerVibration;
 
 	ArrayAdapter<CharSequence> adapter;
+
+	public String keyPrefix = "com.teamkarbon.android.simpledice.";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,19 +59,10 @@ public class SettingActivity extends Activity {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 		//Load CheckBoxes and other controls with saved prefs
-		boolean checkBoxSound_Value = sharedPreferences.getBoolean("checkBoxSound", false);
-		if (checkBoxSound_Value == true) {
-			CheckBoxSound.setChecked(true);
-		} else {
-			CheckBoxSound.setChecked(false);
-		}
+		//Much simplifications here
+		CheckBoxSound.setChecked(sharedPreferences.getBoolean("checkBoxSound", false));
 
-		boolean checkBoxAnimation_Value = sharedPreferences.getBoolean("checkBoxAnimation", false);
-		if (checkBoxAnimation_Value == true) {
-			CheckBoxAnimation.setChecked(true);
-		} else {
-			CheckBoxAnimation.setChecked(false);
-		}
+		CheckBoxAnimation.setChecked(sharedPreferences.getBoolean("checkBoxAnimation", false));
 
 		int _SeekBarDuration = sharedPreferences.getInt("SeekBarDuration", 1);
 		SeekBarDuration.setProgress(_SeekBarDuration);
@@ -79,8 +75,16 @@ public class SettingActivity extends Activity {
 	private void SavePreferences(String key, boolean value) {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		Editor editor = sharedPreferences.edit();
-		editor.putBoolean(key, value);
+		editor.putBoolean(keyPrefix + "" + key, value);
 		editor.commit();
+	}
+
+	private void SavePreferences(String key, int value) { //Another isotope
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		Editor editor = sharedPreferences.edit();
+		editor.putInt(key, value);
+		editor.apply();
+
 	}
 
 	/**
@@ -112,12 +116,18 @@ public class SettingActivity extends Activity {
 				//
 				this.finish();
 				return true;
-			//TODO: Add functionality to the buttons/stuff (setting of values)
-			case R.id.ButtonSave:
-				break;
 
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void save_settings_clicked(View v)
+	{
+		//TODO: Save all settings
+		SavePreferences("checkBoxSound", CheckBoxSound.isChecked());
+		SavePreferences("checkBoxAnimation", CheckBoxAnimation.isChecked());
+		SavePreferences("SeekBarDuration", SeekBarDuration.getProgress());
+		SavePreferences("SpinnerVibrationLength", SpinnerVibration.getSelectedItemPosition());
 	}
 
 }

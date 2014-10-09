@@ -73,6 +73,7 @@
         android:layout_height="wrap_content"
         android:text="@string/setting_button_save"
         android:textSize="25sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:onClick="save_button_clicked"/>
 
 </LinearLayout>
