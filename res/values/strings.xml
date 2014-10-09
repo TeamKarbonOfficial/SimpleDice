@@ -10,9 +10,9 @@
     <string name="Radio_D2">2 Dice</string>
     <string name="Radio_D3">3 Dice</string>
     <string name="title_activity_about">About</string>
-    <string name="about_text_1">SimpleDice is an android application build to be rich in functionality, but yet easy to use.</string>
-    <string name="about_text_2">SimpleDice is and will be 100% ad-free Application and is currently self funded by its developers. Any amount of donations is greatly appreciated!</string>
-    <string name="about_text_3">SimpleDice Application is developed by TeamKarbon</string>
+    <string name="about_text_1">SimpleDice is an android application built to be rich in functionality, yet easy to use.</string>
+    <string name="about_text_2">SimpleDice is and will be 100% ad-free Application and is currently self funded by its developers. Any donations will be greatly appreciated!</string>
+    <string name="about_text_3">SimpleDice is developed by TeamKarbon</string>
     <string name="Image_Button_TK">ImageButtonTK</string>
     <string name="Image_Button_PS">ImageButtonPS</string>
     <string name="Image_Button_Donate">ImageButtonDonate</string>

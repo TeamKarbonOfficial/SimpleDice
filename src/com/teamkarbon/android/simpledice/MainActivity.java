@@ -1,16 +1,14 @@
 package com.teamkarbon.android.simpledice;
 
-import java.util.Random;
-
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +18,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.Random;
  
 public class MainActivity extends Activity {
 	
@@ -166,9 +165,9 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 		case R.id.action_settings:
-			Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
-		//	Intent settingintent = new Intent(this, SettingActivity.class);
-		//	startActivity(settingintent);
+		//	Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+			Intent settingintent = new Intent(this, SettingActivity.class);
+			startActivity(settingintent);
 			return true;
 			
 		case R.id.action_about:
