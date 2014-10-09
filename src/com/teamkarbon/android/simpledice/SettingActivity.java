@@ -7,40 +7,48 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
 public class SettingActivity extends Activity {
-	
+
 	//Declare
 	Button ButtonSave;
 	CheckBox CheckBoxSound;
 	CheckBox CheckBoxAnimation;
 	SeekBar SeekBarDuration;
 	Spinner SpinnerVibration;
-	
+
+	ArrayAdapter<CharSequence> adapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setting);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
+
 		//Initialize
 		ButtonSave = (Button) findViewById(R.id.ButtonSave);
 		CheckBoxSound = (CheckBox) findViewById(R.id.CheckBoxSound);
 		CheckBoxAnimation = (CheckBox) findViewById(R.id.CheckBoxAnimation);
 		SeekBarDuration = (SeekBar) findViewById(R.id.SeekBarDuration);
 		SpinnerVibration = (Spinner) findViewById(R.id.SpinnerVibration);
-		
+
+		adapter = ArrayAdapter.createFromResource(this, R.array.spinner_textarray, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+		SpinnerVibration.setAdapter(adapter);
+
 		LoadSavedPreferences();
 	}
 
 	private void LoadSavedPreferences() {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		//Load CheckBoxes
 		boolean checkBoxSound_Value = sharedPreferences.getBoolean("checkBoxSound", false);
 		if (checkBoxSound_Value == true) {
@@ -48,14 +56,14 @@ public class SettingActivity extends Activity {
 		} else {
 			CheckBoxSound.setChecked(false);
 		}
-		
+
 		boolean checkBoxAnimation_Value = sharedPreferences.getBoolean("checkBoxAnimation", false);
 		if (checkBoxAnimation_Value == true) {
 			CheckBoxAnimation.setChecked(true);
 		} else {
 			CheckBoxAnimation.setChecked(false);
 		}
-		
+
 		int _SeekBarDuration = sharedPreferences.getInt("SeekBarDuration", 1);//Naming clash..
 		SeekBarDuration.setProgress(_SeekBarDuration);
 	}
@@ -96,13 +104,9 @@ public class SettingActivity extends Activity {
 				//
 				this.finish();
 				return true;
-			case R.id.CheckBoxSound:
+			//TODO: Add functionality to the buttons/stuff (setting of values)
+			case R.id.ButtonSave:
 				break;
-			case R.id.CheckBoxAnimation:
-				break;
-			case R.id.SeekBarDuration:
-				break;
-
 
 		}
 		return super.onOptionsItemSelected(item);
