@@ -60,15 +60,15 @@ public class SettingActivity extends Activity {
 
 		//Load CheckBoxes and other controls with saved prefs
 		//Much simplifications here
-		CheckBoxSound.setChecked(sharedPreferences.getBoolean("checkBoxSound", false));
+		CheckBoxSound.setChecked(sharedPreferences.getBoolean(keyPrefix + "checkBoxSound", false));
 
-		CheckBoxAnimation.setChecked(sharedPreferences.getBoolean("checkBoxAnimation", false));
+		CheckBoxAnimation.setChecked(sharedPreferences.getBoolean(keyPrefix + "checkBoxAnimation", false));
 
-		int _SeekBarDuration = sharedPreferences.getInt("SeekBarDuration", 1);
+		int _SeekBarDuration = sharedPreferences.getInt(keyPrefix + "SeekBarDuration", 1);
 		SeekBarDuration.setProgress(_SeekBarDuration);
 
 		int VibrationLengthState;//0 - none, 1 - short, 2 - long
-		SpinnerVibration.setSelection(sharedPreferences.getInt("SpinnerVibrationLength", 0));
+		SpinnerVibration.setSelection(sharedPreferences.getInt(keyPrefix + "SpinnerVibrationLength", 0));
 
 	}
 
@@ -82,7 +82,7 @@ public class SettingActivity extends Activity {
 	private void SavePreferences(String key, int value) { //Another isotope
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		Editor editor = sharedPreferences.edit();
-		editor.putInt(key, value);
+		editor.putInt(keyPrefix + "" + key, value);
 		editor.apply();
 
 	}
@@ -121,7 +121,7 @@ public class SettingActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void save_settings_clicked(View v)
+	public void save_button_clicked(View v)
 	{
 		//TODO: Save all settings
 		SavePreferences("checkBoxSound", CheckBoxSound.isChecked());
