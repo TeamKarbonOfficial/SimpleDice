@@ -15,6 +15,10 @@ import android.widget.Spinner;
 
 public class SettingActivity extends Activity {
 
+	//NOTE: Keys used: booleans: 'checkBoxSound', 'checkBoxAnimation'
+	//in shared pref.  int (0 to 100) 'SeekBarDuration'
+	//                 int (0, 1, 2) 'SpinnerVibrationLength'
+
 	//Declare
 	Button ButtonSave;
 	CheckBox CheckBoxSound;
@@ -49,7 +53,7 @@ public class SettingActivity extends Activity {
 	private void LoadSavedPreferences() {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-		//Load CheckBoxes
+		//Load CheckBoxes and other controls with saved prefs
 		boolean checkBoxSound_Value = sharedPreferences.getBoolean("checkBoxSound", false);
 		if (checkBoxSound_Value == true) {
 			CheckBoxSound.setChecked(true);
@@ -64,8 +68,12 @@ public class SettingActivity extends Activity {
 			CheckBoxAnimation.setChecked(false);
 		}
 
-		int _SeekBarDuration = sharedPreferences.getInt("SeekBarDuration", 1);//Naming clash..
+		int _SeekBarDuration = sharedPreferences.getInt("SeekBarDuration", 1);
 		SeekBarDuration.setProgress(_SeekBarDuration);
+
+		int VibrationLengthState;//0 - none, 1 - short, 2 - long
+		SpinnerVibration.setSelection(sharedPreferences.getInt("SpinnerVibrationLength", 0));
+
 	}
 
 	private void SavePreferences(String key, boolean value) {
