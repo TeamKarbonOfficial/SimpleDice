@@ -14,8 +14,11 @@ Features:
 Features (Work in progress):
 > A usable settings screen with the following settings:
 >> Animation (on/off) Configurable, Not yet implemented (WIP)
+
 >> Sound (on/off) Configurable, Not yet implemented (WIP)
+
 >> Animation Duration (0 to 10) Configurable, Not yet implemented (WIP)
+
 >> Dice Vibration (Off/Short/Long) Configurable, Not yet implemented (WIP)
 
 Fixes/Improvements/Changes:
