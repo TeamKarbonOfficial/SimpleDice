@@ -123,7 +123,6 @@ public class SettingActivity extends Activity {
 
 	public void save_button_clicked(View v)
 	{
-		//TODO: Save all settings
 		SavePreferences("checkBoxSound", CheckBoxSound.isChecked());
 		SavePreferences("checkBoxAnimation", CheckBoxAnimation.isChecked());
 		SavePreferences("SeekBarDuration", SeekBarDuration.getProgress());
