@@ -3,12 +3,14 @@ package com.teamkarbon.android.simpledice;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,10 +24,17 @@ import android.widget.TextView;
 import java.util.Random;
  
 public class MainActivity extends Activity {
-	
+    //NOTE: Keys used: booleans: 'checkBoxSound', 'checkBoxAnimation'
+    //in shared pref.  int (0 to 10) 'SeekBarDuration'
+    //                 int (0, 1, 2) 'SpinnerVibrationLength'
+    //IMPORTANT: MUST USE com.teamkarbon.android.simpledice PREFIX BEFORE KEY NAME TO PREVENT CONFLICT
+    // (check Save Preference function
+
 	//Settings
 	boolean sound = false, animation = true, vibration = false;
-	int duration = 500;
+	int duration = 1;
+
+    public String keyPrefix = "com.teamkarbon.android.simpledice.";
 	
 	int number, max = 6, min = 1, countdown, beep;
 	float volume = 1;
@@ -67,6 +76,12 @@ public class MainActivity extends Activity {
 
 		addListenerOnradioGroup1();
 		addListenerOnRDButton(sp, v);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sound = sharedPreferences.getBoolean(keyPrefix + "checkBoxSound", false);
+        animation = sharedPreferences.getBoolean(keyPrefix + "checkBoxAnimation", false);
+        duration = sharedPreferences.getInt(keyPrefix + "SeekBarDuration", 1) * 100;
+
 	}
 	
 	//RadioGroup Listener

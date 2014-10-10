@@ -114,7 +114,7 @@ public class SettingActivity extends Activity {
 				//
 				// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 				//
-				this.finish();
+                this.finish();
 				return true;
 
 		}
