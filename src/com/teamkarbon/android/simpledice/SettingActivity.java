@@ -77,8 +77,8 @@ public class SettingActivity extends Activity {
 	private void SavePreferences(String key, boolean value) {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		Editor editor = sharedPreferences.edit();
-		editor.putBoolean(keyPrefix + "" + key, value);
-		editor.apply();
+        editor.putBoolean(keyPrefix + "" + key, value);
+        editor.apply();
 	}
 
 	private void SavePreferences(String key, int value) { //Another isotope
@@ -108,16 +108,27 @@ public class SettingActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				// This ID represents the Home or Up button. In the case of this
-				// activity, the Up button is shown. Use NavUtils to allow users
-				// to navigate up one level in the application structure. For
-				// more details, see the Navigation pattern on Android Design:
-				//
-				// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-				//
+				/*
+				This ID represents the Home or Up button. In the case of this
+				activity, the Up button is shown. Use NavUtils to allow users
+				to navigate up one level in the application structure. For
+				more details, see the Navigation pattern on Android Design:
+
+				http://developer.android.com/design/patterns/navigation.html#up-vs-back
+
+				*/
+
+                SavePreferences("checkBoxSound", CheckBoxSound.isChecked());
+                SavePreferences("checkBoxAnimation", CheckBoxAnimation.isChecked());
+                SavePreferences("SeekBarDuration", SeekBarDuration.getProgress());
+
+                if(SpinnerVibration.getSelectedItemPosition() == 0)
+                    SavePreferences("SpinnerVibrationLength", false);
+                else
+                    SavePreferences("SpinnerVibrationLength", true);
+
                 this.finish();
 				return true;
-
 		}
 		return super.onOptionsItemSelected(item);
 	}
