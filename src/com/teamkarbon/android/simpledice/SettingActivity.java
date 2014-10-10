@@ -18,7 +18,7 @@ public class SettingActivity extends Activity {
 
 	//NOTE: Keys used: booleans: 'checkBoxSound', 'checkBoxAnimation'
 	//in shared pref.  int (0 to 10) 'SeekBarDuration'
-	//                 int (0, 1, 2) 'SpinnerVibrationLength'
+	//                 int (0, 1, 2) 'SpinnerVibration'
 	//IMPORTANT: MUST USE com.teamkarbon.android.simpledice PREFIX BEFORE KEY NAME TO PREVENT CONFLICT
 	// (check Save Preference function
 
@@ -68,7 +68,7 @@ public class SettingActivity extends Activity {
 		SeekBarDuration.setProgress(_SeekBarDuration);
 
 		//selection 0 - off, sel 1 - on;
-		if(sharedPreferences.getBoolean(keyPrefix + "SpinnerVibrationLength", false))
+		if(sharedPreferences.getBoolean(keyPrefix + "SpinnerVibration", false))
             SpinnerVibration.setSelection(1);
         else
             SpinnerVibration.setSelection(0);
@@ -118,14 +118,15 @@ public class SettingActivity extends Activity {
 
 				*/
 
+                //Allow for up button to also save settings when the user exits the screen...
                 SavePreferences("checkBoxSound", CheckBoxSound.isChecked());
                 SavePreferences("checkBoxAnimation", CheckBoxAnimation.isChecked());
                 SavePreferences("SeekBarDuration", SeekBarDuration.getProgress());
 
                 if(SpinnerVibration.getSelectedItemPosition() == 0)
-                    SavePreferences("SpinnerVibrationLength", false);
+                    SavePreferences("SpinnerVibration", false);
                 else
-                    SavePreferences("SpinnerVibrationLength", true);
+                    SavePreferences("SpinnerVibration", true);
 
                 this.finish();
 				return true;
@@ -140,9 +141,9 @@ public class SettingActivity extends Activity {
 		SavePreferences("SeekBarDuration", SeekBarDuration.getProgress());
 
         if(SpinnerVibration.getSelectedItemPosition() == 0)
-		    SavePreferences("SpinnerVibrationLength", false);
+		    SavePreferences("SpinnerVibration", false);
         else
-            SavePreferences("SpinnerVibrationLength", true);
+            SavePreferences("SpinnerVibration", true);
 	}
 
 }

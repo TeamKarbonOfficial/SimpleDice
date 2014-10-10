@@ -26,7 +26,7 @@ import java.util.Random;
 public class MainActivity extends Activity {
     //NOTE: Keys used: booleans: 'checkBoxSound', 'checkBoxAnimation'
     //in shared pref.  int (0 to 10) 'SeekBarDuration'
-    //                 int (0, 1, 2) 'SpinnerVibrationLength'
+    //                 int (0, 1, 2) 'SpinnerVibration'
     //IMPORTANT: MUST USE com.teamkarbon.android.simpledice PREFIX BEFORE KEY NAME TO PREVENT CONFLICT
     // (check Save Preference function
 
@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
         sound = sharedPreferences.getBoolean(keyPrefix + "checkBoxSound", false);
         animation = sharedPreferences.getBoolean(keyPrefix + "checkBoxAnimation", false);
         duration = sharedPreferences.getInt(keyPrefix + "SeekBarDuration", 1) * 100;
-
+        vibration = sharedPreferences.getBoolean(keyPrefix + "SpinnerVibration", false);
 	}
 	
 	//RadioGroup Listener
@@ -180,7 +180,6 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 		case R.id.action_settings:
-		//	Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 			Intent settingintent = new Intent(this, SettingActivity.class);
 			startActivity(settingintent);
 			return true;
