@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="spinner_textarray">
-        <item>None</item>
-        <item>Short</item>
-        <item>Long</item>
+        <item>Off</item>
+        <item>On</item>
     </string-array>
 </resources>

@@ -67,16 +67,18 @@ public class SettingActivity extends Activity {
 		int _SeekBarDuration = sharedPreferences.getInt(keyPrefix + "SeekBarDuration", 1);
 		SeekBarDuration.setProgress(_SeekBarDuration);
 
-		int VibrationLengthState;//0 - none, 1 - short, 2 - long
-		SpinnerVibration.setSelection(sharedPreferences.getInt(keyPrefix + "SpinnerVibrationLength", 0));
-
+		//selection 0 - off, sel 1 - on;
+		if(sharedPreferences.getBoolean(keyPrefix + "SpinnerVibrationLength", false))
+            SpinnerVibration.setSelection(1);
+        else
+            SpinnerVibration.setSelection(0);
 	}
 
 	private void SavePreferences(String key, boolean value) {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		Editor editor = sharedPreferences.edit();
 		editor.putBoolean(keyPrefix + "" + key, value);
-		editor.commit();
+		editor.apply();
 	}
 
 	private void SavePreferences(String key, int value) { //Another isotope
@@ -84,7 +86,6 @@ public class SettingActivity extends Activity {
 		Editor editor = sharedPreferences.edit();
 		editor.putInt(keyPrefix + "" + key, value);
 		editor.apply();
-
 	}
 
 	/**
@@ -126,7 +127,11 @@ public class SettingActivity extends Activity {
 		SavePreferences("checkBoxSound", CheckBoxSound.isChecked());
 		SavePreferences("checkBoxAnimation", CheckBoxAnimation.isChecked());
 		SavePreferences("SeekBarDuration", SeekBarDuration.getProgress());
-		SavePreferences("SpinnerVibrationLength", SpinnerVibration.getSelectedItemPosition());
+
+        if(SpinnerVibration.getSelectedItemPosition() == 0)
+		    SavePreferences("SpinnerVibrationLength", false);
+        else
+            SavePreferences("SpinnerVibrationLength", true);
 	}
 
 }
